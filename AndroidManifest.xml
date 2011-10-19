@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.cyanogenmod.samsungservicemode"
+      android:versionCode="1"
+      android:versionName="1.0"
+      android:sharedUserId="android.uid.phone">
+    <uses-sdk android:minSdkVersion="10" />
+
+    <application android:label="@string/app_name">
+        <activity android:name=".SamsungServiceModeActivity"
+                  android:label="@string/app_name"
+                  android:process="com.android.phone"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".SecretBroadcastReceiver">
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="197328640" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="0011" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="0228" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="32489" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="2580" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="9090" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="7284" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="0599" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="301279" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="279301" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="2263" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="4238378" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="0283" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="1575" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="73876766" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="738767633" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="7387678378" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="7387677763" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="4387264636" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="6984125*" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="2886" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="2767*2878" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="1111" />
+	        </intent-filter>
+	        <intent-filter>
+	            <action android:name="android.provider.Telephony.SECRET_CODE" />
+	            <data android:scheme="android_secret_code" android:host="2222" />
+	        </intent-filter>
+        </receiver>
+    </application>
+</manifest>
