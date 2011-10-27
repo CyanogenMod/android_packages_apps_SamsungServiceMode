@@ -1,15 +1,22 @@
 package com.cyanogenmod.samsungservicemode;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.AsyncResult;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.android.internal.telephony.Phone;
@@ -25,10 +32,13 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
     private static final int ID_SERVICE_MODE_REQUEST = 1008;
     private static final int ID_SERVICE_MODE_END = 1009;
 
+    private static final int DIALOG_INPUT = 0;
+
     private static final int CHARS_PER_LINE = 34;
     private static final int LINES = 11;
 
     private ListView mListView;
+    private EditText mInputText;
     private String[] mDisplay = new String[LINES];
 
     private int mCurrentSvcMode;
@@ -139,6 +149,7 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        mInputText = new EditText(this);
         mListView = (ListView)findViewById(R.id.displayList);
         mListView.setOnItemClickListener(this);
 
@@ -213,6 +224,45 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
     }
 
     @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+        case DIALOG_INPUT:
+            return new AlertDialog.Builder(this)
+            .setTitle(R.string.input)
+            .setView(mInputText)
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    sendString(mInputText.getText().toString());
+                    mInputText.setText("");
+                }
+            })
+            .setNegativeButton(android.R.string.cancel, null)
+            .create();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.menu_input:
+            showDialog(DIALOG_INPUT);
+            break;
+        case R.id.menu_quit:
+            endServiceMode();
+            break;
+        }
+        return true;
+    }
+
+    @Override
     public void onBackPressed() {
         if (!mAllowBack && mDisplay[0].equals(mFirstPageHead)) {
             Log.v(TAG, "Back disabled. Ending service mode.");
@@ -225,6 +275,13 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String str = mDisplay[position];
+
+        if (str.equals("Input ?")) {
+            // This one asks for input, show the input dialog for convenience
+            showDialog(DIALOG_INPUT);
+            return;
+        }
+
         int start = str.indexOf('[');
         int end = str.indexOf(']');
 
@@ -267,6 +324,13 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
 
         byte[] data = OemCommands.getPressKeyData(chr, OemCommands.OEM_SM_ACTION);
         sendRequest(data, ID_SERVICE_MODE_REQUEST);
+    }
+
+    private void sendString(String str) {
+        for (char chr : str.toCharArray()) {
+            sendChar(chr);
+        }
+        sendChar((char) 83); // End
     }
 
     private void sendRequest(byte[] data, int id) {
