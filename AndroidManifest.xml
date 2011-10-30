@@ -114,5 +114,12 @@
 	            <data android:scheme="android_secret_code" android:host="2222" />
 	        </intent-filter>
         </receiver>
+        <receiver android:name=".ExecuteReceiver"
+            android:process="com.android.phone"
+            android:permission="android.permission.WRITE_SECURE_SETTINGS">
+            <intent-filter>
+                <action android:name="com.cyanogenmod.SamsungServiceMode.EXECUTE" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
