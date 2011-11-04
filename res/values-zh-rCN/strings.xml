@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">服务模式</string>
+    <string name="input">输入</string>
+    <string name="quit">结束</string>
+</resources>
