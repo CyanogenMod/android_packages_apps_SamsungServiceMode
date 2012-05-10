@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Modo de Serviço</string>
+  <string name="input">Entrada</string>
+  <string name="quit">Saída</string>
+</resources>
