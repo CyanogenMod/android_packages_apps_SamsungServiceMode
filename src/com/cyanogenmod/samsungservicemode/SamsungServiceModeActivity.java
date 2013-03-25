@@ -35,7 +35,7 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
     private static final int DIALOG_INPUT = 0;
 
     private static final int CHARS_PER_LINE = 34;
-    private static final int LINES = 11;
+    private static final int LINES = 16; // 11 on gb and ics, 16 on jb
 
     private ListView mListView;
     private EditText mInputText;
