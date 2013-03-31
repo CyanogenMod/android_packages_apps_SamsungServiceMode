@@ -35,11 +35,10 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
     private static final int DIALOG_INPUT = 0;
 
     private static final int CHARS_PER_LINE = 34;
-    private static final int LINES = 16; // 11 on gb and ics, 16 on jb
 
     private ListView mListView;
     private EditText mInputText;
-    private String[] mDisplay = new String[LINES];
+    private String[] mDisplay;
 
     private int mCurrentSvcMode;
     private int mCurrentModeType;
@@ -92,9 +91,10 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
                 }
 
                 int lines = aob.length / CHARS_PER_LINE;
-                if (lines > LINES) {
-                    Log.e(TAG, "Datasize " + aob.length + " larger than expected");
-                    return;
+
+                if (mDisplay == null || mDisplay.length != lines) {
+                    Log.v(TAG, "New array = " + lines);
+                    mDisplay = new String[lines];
                 }
 
                 for (int i = 0; i < lines; i++) {
