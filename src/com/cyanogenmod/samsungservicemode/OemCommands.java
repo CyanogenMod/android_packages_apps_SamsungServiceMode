@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import android.content.Context;
 import android.util.Log;
 
 class OemCommands {
@@ -59,13 +60,31 @@ class OemCommands {
     public static final char OEM_SM_TYPE_SUB_TST_FTA_SW_VERSION_ENTER = 4098;
     public static final char OEM_SM_TYPE_SUB_TST_FTA_HW_VERSION_ENTER = 4099;
 
-    public static byte[] getEnterServiceModeData(int modeType, int subType, int query) {
+    private int mApiVersion;
+
+    private OemCommands(int apiVersion) {
+        mApiVersion = apiVersion;
+    }
+
+    public static OemCommands getInstance(Context context) {
+        int apiVersion = context.getResources().getInteger(R.integer.config_api_version);
+        return new OemCommands(apiVersion);
+    }
+
+    public byte[] getEnterServiceModeData(int modeType, int subType, int query) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
             dos.writeByte(OEM_SERVM_FUNCTAG);
             dos.writeByte(OEM_SM_ENTER_MODE_MESSAGE);
-            dos.writeShort(7);
+            if (mApiVersion == 1) {
+                dos.writeShort(7);
+            } else if (mApiVersion == 2) {
+                dos.writeShort(8);
+                dos.writeByte(4);
+            } else {
+                throw new IllegalArgumentException("Invalid API version " + mApiVersion);
+            }
             dos.writeByte(modeType);
             dos.writeByte(subType);
             dos.writeByte(query);
@@ -76,13 +95,20 @@ class OemCommands {
         return null;
     }
 
-    public static byte[] getEndServiceModeData(int modeType) {
+    public byte[] getEndServiceModeData(int modeType) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
             dos.writeByte(OEM_SERVM_FUNCTAG);
             dos.writeByte(OEM_SM_END_MODE_MESSAGE);
-            dos.writeShort(5);
+            if (mApiVersion == 1) {
+                dos.writeShort(5);
+            } else if (mApiVersion == 2) {
+                dos.writeShort(6);
+                dos.writeByte(4);
+            } else {
+                throw new IllegalArgumentException("Invalid API version " + mApiVersion);
+            }
             dos.writeByte(modeType);
             return baos.toByteArray();
         } catch (IOException e) {
@@ -91,13 +117,20 @@ class OemCommands {
         return null;
     }
 
-    public static byte[] getPressKeyData(int keycode, int query) {
+    public byte[] getPressKeyData(int keycode, int query) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
             dos.writeByte(OEM_SERVM_FUNCTAG);
             dos.writeByte(OEM_SM_PROCESS_KEY_MESSAGE);
-            dos.writeShort(6);
+            if (mApiVersion == 1) {
+                dos.writeShort(6);
+            } else if (mApiVersion == 2) {
+                dos.writeShort(7);
+                dos.writeByte(4);
+            } else {
+                throw new IllegalArgumentException("Invalid API version " + mApiVersion);
+            }
             dos.writeByte(keycode);
             dos.writeByte(query);
             return baos.toByteArray();

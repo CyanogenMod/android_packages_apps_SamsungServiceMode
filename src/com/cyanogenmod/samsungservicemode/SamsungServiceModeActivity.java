@@ -49,6 +49,7 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
     private String mFirstPageHead;
 
     private Phone mPhone;
+    private OemCommands mOemCommands;
     private Handler mHandler = new Handler() {
 
         @Override
@@ -59,10 +60,10 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
                 byte[] data = null;
                 switch(mCurrentSvcMode) {
                 case OemCommands.OEM_SM_ENTER_MODE_MESSAGE:
-                    data = OemCommands.getEnterServiceModeData(0, 0, OemCommands.OEM_SM_QUERY);
+                    data = mOemCommands.getEnterServiceModeData(0, 0, OemCommands.OEM_SM_QUERY);
                     break;
                 case OemCommands.OEM_SM_PROCESS_KEY_MESSAGE:
-                    data = OemCommands.getPressKeyData('\0', OemCommands.OEM_SM_QUERY);
+                    data = mOemCommands.getPressKeyData('\0', OemCommands.OEM_SM_QUERY);
                     break;
                 default:
                     Log.e(TAG, "Unknown mode: " + mCurrentSvcMode);
@@ -154,6 +155,7 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
         mListView.setOnItemClickListener(this);
 
         mPhone = PhoneFactory.getDefaultPhone();
+        mOemCommands = OemCommands.getInstance(this);
 
         // Go to the page specified by the code used to enter service mode
         String code = getIntent().getStringExtra(EXTRA_SECRET_CODE);
@@ -301,14 +303,14 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
     private void enterServiceMode(int modeType, int subType) {
         mCurrentSvcMode = OemCommands.OEM_SM_ENTER_MODE_MESSAGE;
         mCurrentModeType = modeType;
-        byte[] data = OemCommands.getEnterServiceModeData(modeType, subType, OemCommands.OEM_SM_ACTION);
+        byte[] data = mOemCommands.getEnterServiceModeData(modeType, subType, OemCommands.OEM_SM_ACTION);
         sendRequest(data, ID_SERVICE_MODE_REQUEST);
     }
 
     private void endServiceMode() {
         mCurrentSvcMode = OemCommands.OEM_SM_END_MODE_MESSAGE;
         mHandler.removeMessages(ID_SERVICE_MODE_REFRESH);
-        byte[] data = OemCommands.getEndServiceModeData(mCurrentModeType);
+        byte[] data = mOemCommands.getEndServiceModeData(mCurrentModeType);
         sendRequest(data, ID_SERVICE_MODE_END);
         finish();
     }
@@ -322,7 +324,7 @@ public class SamsungServiceModeActivity extends Activity implements AdapterView.
             chr = '*';
         }
 
-        byte[] data = OemCommands.getPressKeyData(chr, OemCommands.OEM_SM_ACTION);
+        byte[] data = mOemCommands.getPressKeyData(chr, OemCommands.OEM_SM_ACTION);
         sendRequest(data, ID_SERVICE_MODE_REQUEST);
     }
 

@@ -18,6 +18,7 @@ public class ExecuteReceiver extends BroadcastReceiver {
     public static final String KEY_DATA = "data";
 
     private Phone mPhone;
+    private OemCommands mOemCommands;
     private Handler mHandler = new Handler();
 
     @Override
@@ -34,15 +35,16 @@ public class ExecuteReceiver extends BroadcastReceiver {
 
         // Initialize
         mPhone = PhoneFactory.getDefaultPhone();
+        mOemCommands = OemCommands.getInstance(context);
 
         // Send requests
-        sendRequest(OemCommands.getEnterServiceModeData(modeType, subType, OemCommands.OEM_SM_ACTION));
+        sendRequest(mOemCommands.getEnterServiceModeData(modeType, subType, OemCommands.OEM_SM_ACTION));
 
         for (char chr : data.toCharArray()) {
-            sendRequest(OemCommands.getPressKeyData(chr, OemCommands.OEM_SM_ACTION));
+            sendRequest(mOemCommands.getPressKeyData(chr, OemCommands.OEM_SM_ACTION));
         }
 
-        sendRequest(OemCommands.getEndServiceModeData(modeType));
+        sendRequest(mOemCommands.getEndServiceModeData(modeType));
     }
 
     private void sendRequest(byte[] data) {
