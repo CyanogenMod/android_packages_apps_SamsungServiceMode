@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Menu di servizio</string>
-  <string name="input">Inserisci</string>
-  <string name="quit">Esci</string>
+  <string name="app_name">Servis Modu</string>
+  <string name="input">Giriş</string>
+  <string name="quit">Çık</string>
 </resources>

@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Menu di servizio</string>
-  <string name="input">Inserisci</string>
-  <string name="quit">Esci</string>
+  <string name="app_name">Mou de serviciu</string>
+  <string name="input">Entrada</string>
+  <string name="quit">Colar</string>
 </resources>
