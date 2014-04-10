@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Service-tilstand</string>
-  <string name="input">Input</string>
-  <string name="quit">Afslut</string>
+  <string name="app_name">מצב שירות</string>
+  <string name="input">קלט</string>
+  <string name="quit">צא</string>
 </resources>
