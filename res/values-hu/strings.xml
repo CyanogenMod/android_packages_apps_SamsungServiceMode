@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Szerviz mód</string>
+  <string name="app_name">Szerviz Mód</string>
   <string name="input">Bevitel</string>
   <string name="quit">Kilépés</string>
 </resources>
