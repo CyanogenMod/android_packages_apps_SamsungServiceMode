@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Server rejimi</string>
+  <string name="app_name">Server Rejimi</string>
   <string name="input">Giriş</string>
   <string name="quit">Çıx</string>
 </resources>
