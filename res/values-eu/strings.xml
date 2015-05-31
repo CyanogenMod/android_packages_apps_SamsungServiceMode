@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Zerbitzu menua</string>
+  <string name="app_name">Zerbitzu modua</string>
   <string name="input">Sartu</string>
   <string name="quit">Irten</string>
 </resources>
