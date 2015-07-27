@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">מצב שירות</string>
-  <string name="input">קלט</string>
-  <string name="quit">יציאה</string>
+  <string name="app_name">ಸೇವೆ ಮೋಡ್</string>
+  <string name="input">ಇನ್‍ಪುಟ್</string>
+  <string name="quit">ನಿರ್ಗಮಿಸಿ</string>
 </resources>

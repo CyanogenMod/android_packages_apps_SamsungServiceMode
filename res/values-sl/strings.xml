@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">מצב שירות</string>
-  <string name="input">קלט</string>
-  <string name="quit">יציאה</string>
+  <string name="app_name">Način storitve</string>
+  <string name="input">Vnos</string>
+  <string name="quit">Končaj</string>
 </resources>
