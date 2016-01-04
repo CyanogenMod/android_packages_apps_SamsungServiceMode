@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Modo de servicio</string>
-  <string name="input">Entrada</string>
-  <string name="quit">Salir</string>
+  <string name="app_name">Chế độ dịch vụ</string>
+  <string name="input">Nhập</string>
+  <string name="quit">Thoát</string>
 </resources>
