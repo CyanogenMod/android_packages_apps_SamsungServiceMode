@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Modo de servicio</string>
-  <string name="input">Entrada</string>
-  <string name="quit">Salir</string>
+  <string name="app_name">รูปแบบบริการ</string>
+  <string name="input">ป้อนข้อมูล</string>
+  <string name="quit">ออก</string>
 </resources>

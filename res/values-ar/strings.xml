@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Modo de servicio</string>
-  <string name="input">Entrada</string>
-  <string name="quit">Salir</string>
+  <string name="app_name">وضع خدمة</string>
+  <string name="input">الإدخال</string>
+  <string name="quit">خروج</string>
 </resources>
