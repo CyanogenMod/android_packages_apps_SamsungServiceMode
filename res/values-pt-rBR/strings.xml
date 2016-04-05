@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Modo de Serviço</string>
+  <string name="app_name">Modo de serviço</string>
   <string name="input">Entrada</string>
   <string name="quit">Sair</string>
 </resources>
