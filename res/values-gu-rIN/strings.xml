@@ -16,7 +16,7 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Modus Layanan</string>
-  <string name="input">Masukan</string>
-  <string name="quit">Keluar</string>
+  <string name="app_name">સેવા મોડ</string>
+  <string name="input">ઇનપુટ</string>
+  <string name="quit">શાંત</string>
 </resources>
