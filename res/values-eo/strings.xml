@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources>
-  <string name="app_name">Serva Reĝimo</string>
   <string name="input">Enigo</string>
   <string name="quit">Eliri</string>
 </resources>
